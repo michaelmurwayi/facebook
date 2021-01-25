@@ -1,4 +1,5 @@
 <template>
+<v-app>
 
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-white" style="position:relative;">
@@ -108,30 +109,14 @@
                     <img class="rounded-circle" src="../assets/logo.jpeg" style="height:40px;">
                      <!-- <input @change="GetImage" type="file" name="image" id=""> -->
                     </div>
-                    <div class="form-outline col-md-8 red mt-3">
-                    
-                    <v-text-field type="text" class="form-control" placeholder="what's on your mind"> </v-text-field>
-            
+                    <div class=" mt-3">
+                        <v-text-field rounded flat full-width  solo-scope> We are here be </v-text-field>
                     </div>
                 </div>
                 <hr>
                 <div></div>
             </div>
-            <div class="card mt-5 col-md-10 mr-0">
-                <div class="row">
-                    <div class="col-md-2 mt-2">
-
-                    <img class="rounded-circle" src="../assets/logo.jpeg" style="height:40px;">
-                    </div>
-                    <div class="form-outline col-md-8 red mt-3">
-                    
-                    <v-text-field type="text" class="form-control" placeholder="what's on your mind"> </v-text-field>
             
-                    </div>
-                </div>
-                <hr>
-                <div></div>
-            </div>
             <div class="card col-md-10 mr-0 mt-5">
                 <div class="text-align-left">
 
@@ -147,7 +132,8 @@
         </div>
         
     </div>
-</div>
+
+</v-app>
 </template>
 <style scoped>
 .container-fluid{
