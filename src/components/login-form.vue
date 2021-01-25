@@ -11,7 +11,7 @@
     </form>
     </div>
     <div class="celebrity mt-5">
-    <p><strong>Create a Page</strong> for a celebrity, band or business.</p>
+    <p><strong><router-link to="signup">Create a Page</router-link></strong> for a celebrity, band or business.</p>
 
     </div>
     
@@ -34,7 +34,7 @@ export default {
     methods:{
       pressed(){
         firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(()=>{
-          this.$router.replace({path:"/account"})
+          this.$router.replace({path:"/dashboard"})
         })
       }
     }

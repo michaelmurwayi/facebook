@@ -109,7 +109,7 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           console.log("firebase");
-          this.$router.replace({path:"/account"})
+          this.$router.replace({path:"/dashboard"})
         })
         .catch(error => (this.error = error));
     }
