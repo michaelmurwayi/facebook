@@ -1,4 +1,5 @@
 <template>
+<v-app>
 
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-white" style="position:relative;">
@@ -108,46 +109,23 @@
                     <img class="rounded-circle" src="../assets/logo.jpeg" style="height:40px;">
                      <!-- <input @change="GetImage" type="file" name="image" id=""> -->
                     </div>
-                    <div class="form-outline col-md-8 red mt-3">
-                    
-                    <v-text-field type="text" class="form-control" placeholder="what's on your mind"> </v-text-field>
-            
+                    <div class=" mt-3">
+                        <form class="form-group" >
+                        <input type="email" id="email1" class="form-control mt-4 mb-2" placeholder="Email or Phone number"/>
+                        <button class="btn btn-login mb-2" type="submit" >Log In</button>
+                        </form>
                     </div>
                 </div>
                 <hr>
                 <div></div>
-            </div>
-            <div class="card mt-5 col-md-10 mr-0">
-                <div class="row">
-                    <div class="col-md-2 mt-2">
-
-                    <img class="rounded-circle" src="../assets/logo.jpeg" style="height:40px;">
-                    </div>
-                    <div class="form-outline col-md-8 red mt-3">
-                    
-                    <v-text-field type="text" class="form-control" placeholder="what's on your mind"> </v-text-field>
-            
-                    </div>
-                </div>
-                <hr>
-                <div></div>
-            </div>
-            <div class="card col-md-10 mr-0 mt-5">
-                <div class="text-align-left">
-
-                <h2 class="text-left m-2" style="font-weight:900;">Intro</h2>
-                </div>
-
-                <button class="col-md-11 m-2 mt-3 btn-lg" style="border:none;">Edit Details</button>
-                <button class="col-md-11 m-2 mt-3 btn-lg" style="border:none;">Add Hobbies</button>
-                <button class="col-md-11 m-2 mt-3 btn-lg #989898 mb-4" style="border:none;">Edit Featured</button>
             </div>
             
         </div>
         </div>
         
     </div>
-</div>
+
+</v-app>
 </template>
 <style scoped>
 .container-fluid{
@@ -222,11 +200,15 @@ li:hover{
 }
 </style>
 <script>
+import {firebase} from '../firebase'
+require('firebase/auth')
+const db = firebase.firestore()
     export default {
         name:'Michael',
         data(){
             return{
-               previewImage:null
+               previewImage:null,
+               text:null,
             }
         },
         methods:{
@@ -237,9 +219,23 @@ li:hover{
                 reader.onload = e =>{
                     this.previewImage = e.target.result;
                     console.log(this.previewImage);
-                    console.log(this.e.target.result)
+                    console.log(this.e.target.result);
+                    console.log("we are here");
                 };
-            }
+
+            
+            },
+        //     savePost: function (e) {
+        //             e.preventDefault()
+        //             var message = this.text
+        //             // firebase.usersCollection.add({
+        //             //     message,
+        //             //     createdOn: firebase.firestore.Timestamp.now(),
+        //             //     updatedOn: firebase.firestore.Timestamp.now()
+        //             // })
+
+        //             console.log(firebase)
+        //         },
         }
      }  // missing closure added
 </script>
