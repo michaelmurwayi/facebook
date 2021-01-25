@@ -110,7 +110,10 @@
                      <!-- <input @change="GetImage" type="file" name="image" id=""> -->
                     </div>
                     <div class=" mt-3">
-                        <v-text-field rounded flat full-width  solo-scope> We are here be </v-text-field>
+                        <form class="form-group" >
+                        <input type="email" id="email1" class="form-control mt-4 mb-2" placeholder="Email or Phone number"/>
+                        <button class="btn btn-login mb-2" type="submit" >Log In</button>
+                        </form>
                     </div>
                 </div>
                 <hr>
@@ -208,11 +211,14 @@ li:hover{
 }
 </style>
 <script>
+import {firebase} from '../firebase'
+require('firebase/auth')
     export default {
         name:'Michael',
         data(){
             return{
-               previewImage:null
+               previewImage:null,
+               text:null,
             }
         },
         methods:{
@@ -223,9 +229,22 @@ li:hover{
                 reader.onload = e =>{
                     this.previewImage = e.target.result;
                     console.log(this.previewImage);
-                    console.log(this.e.target.result)
+                    console.log(this.e.target.result);
+                    console.log("we are here");
                 };
-            }
+            
+            },
+        //     savePost: function (e) {
+        //             e.preventDefault()
+        //             var message = this.text
+        //             // firebase.usersCollection.add({
+        //             //     message,
+        //             //     createdOn: firebase.firestore.Timestamp.now(),
+        //             //     updatedOn: firebase.firestore.Timestamp.now()
+        //             // })
+
+        //             console.log(firebase)
+        //         },
         }
      }  // missing closure added
 </script>

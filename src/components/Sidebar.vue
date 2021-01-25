@@ -292,7 +292,7 @@ h2{
 }
 input {
     display: none;
-    }
+    }v>
 label {
         display: inline-block;
         width: 34px;
