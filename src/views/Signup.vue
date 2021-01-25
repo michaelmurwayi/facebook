@@ -1,9 +1,8 @@
 <template>
   <div id="app">
+    <Navbar/>
     <div class="row">
-
-    <Introduction/>
-    <Login/>
+    <Signup/>
     <Footer/>
     <router-view/>
     </div>
@@ -11,15 +10,14 @@
 </template>
 
 <script>
-import Introduction from '@/components/intro.vue'
-import Login from '@/components/login-form.vue'
+import Navbar from '@/components/Navbar.vue'
+import Signup from '@/components/Signup-form.vue'
 import Footer from '@/components/footer.vue'
 
 export default {
-  name: 'App',
   components: {
-    Introduction,
-    Login,
+    Navbar,
+    Signup,
     Footer
   }
 }
@@ -35,8 +33,8 @@ export default {
   color: #2c3e50;
   margin-top: 0;
   background-color:	#f7f7f7;
-  top: 0px;
-  height: 650px;
+  top: 40px;
+  height: 700px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
 

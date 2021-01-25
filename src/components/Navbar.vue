@@ -49,16 +49,14 @@
 
     <!-- Right elements -->
      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" style="color:white;">Home</a>
+        <li class="nav-item mr-2">
+          <router-link to="home">home</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" style="color:white;">Profile</a>
+        <li class="nav-item mr-2">
+          <router-link to="profile">Profile</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" style="color:white;" aria-disabled="true"
-            >Account</a
-          >
+        <li class="nav-item mr-2">
+          <router-link to="account">Account</router-link>
         </li>
       </ul>
     <!-- Right elements -->

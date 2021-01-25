@@ -3,23 +3,28 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import axios from "axios";
-import firebase from "firebase/app"
+import { auth } from './firebase'
+import Vuetify from 'vuetify'
 
-Vue.config.productionTip = false
-var firebaseConfig = {
-  apiKey: "AIzaSyAT7_MyXeu_KtLqNuIqqw5YddiBQFmXWB8",
-  authDomain: "facebook-cc5d2.firebaseapp.com",
-  projectId: "facebook-cc5d2",
-  storageBucket: "facebook-cc5d2.appspot.com",
-  messagingSenderId: "553503422477",
-  appId: "1:553503422477:web:f7d4d3fb11a1dce03efd44"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+Vue.use(Vuetify);
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+auth.onAuthStateChanged(()=>{
+
+    new Vue({
+      vuetify: new Vuetify(),
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+
+  if (requiresAuth && !auth.currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+

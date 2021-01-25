@@ -3,7 +3,16 @@
         <div class="col-md-3" style="border-right: 1px solid grey;">
             <div class="col-md-12">
             <div class="col-md-4 mt-5 ">
-                <img :src="require('../assets/rick.jpeg')" class="profile-pic" alt="profile picture">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" style="background-image: url(require('../assets/place.jpeg'));">
+                        </div>
+                    </div>
+                </div>
                 <ul class="mt-3 row">
                     <div class="col-md-3 mt-2">
                     <i class="fas fa-camera-retro col-md-12"></i>
@@ -85,23 +94,23 @@
             </div>
     <div class="row">
         <div class="frame col-md-2">
-        <img :src="require('../assets/badrick.jpeg')" alt="Club Card"  style="width:130%; margin-left:5px; height:150px">
+        <img :src="require('../assets/place.jpeg')" alt="Club Card"  style="width:130%; margin-left:5px; height:150px">
         </div>
         <br>
         <!-- Alignment of vertically oversized image -->
         <div class="frame col-md-2">
-            <img :src="require('../assets/coolrick.jpeg')" alt="Flying Kites"  style="width:130%; margin-left:5px; height:150px">
+            <img :src="require('../assets/place.jpeg')" alt="Flying Kites"  style="width:130%; margin-left:5px; height:150px">
         </div>
         <br>
         <!-- Alignment of horizontally oversized image -->
         <div class="frame col-md-2">
-            <img :src="require('../assets/adventurerick.jpeg')" alt="Cloudy Sky" style="width:130%; margin-left: 5px; height:150px">
+            <img :src="require('../assets/place.jpeg')" alt="Cloudy Sky" style="width:130%; margin-left: 5px; height:150px">
         </div>
         <div class="frame col-md-2">
-            <img :src="require('../assets/rickcrush.jpeg')" alt="Cloudy Sky"  style="width:130%; margin-left: 5px; height:150px">
+            <img :src="require('../assets/place.jpeg')" alt="Cloudy Sky"  style="width:130%; margin-left: 5px; height:150px">
         </div>
         <div class="frame col-md-2">
-            <img :src="require('../assets/morty.jpeg')" alt="Cloudy Sky"  style="width:130%; margin-left: 5px; height:150px">
+            <img :src="require('../assets/place.jpeg')" alt="Cloudy Sky"  style="width:130%; margin-left: 5px; height:150px">
         </div> 
     </div> 
     
@@ -165,11 +174,11 @@
             </div>
         <div class="row mt-0">
         <div class="frame col-md-5 ">
-        <img :src="require('../assets/badrick.jpeg')" alt="Club Card"  style="width:130%; margin-left:5px; height:150px">
+        <img :src="require('../assets/place.jpeg')" alt="Club Card"  style="width:130%; margin-left:5px; height:150px">
         </div>
         <!-- Alignment of vertically oversized image -->
         <div class="frame col-md-5">
-            <img :src="require('../assets/coolrick.jpeg')" alt="Flying Kites"  style="width:130%; margin-left:5px; height:150px">
+            <img :src="require('../assets/place.jpeg')" alt="Flying Kites"  style="width:130%; margin-left:5px; height:150px">
         </div>
         <br> 
             <div class="navbar navbar-sm col-md-10 ml-4" style="height:30px; width:100%;">
@@ -227,7 +236,6 @@
 
     </div>
 
-    </div>
 </template>
 <script>
 export default {
@@ -235,6 +243,9 @@ export default {
 }
 </script>
 <style scoped>
+/* .container-fluid{
+    background-color: grey;
+} */
 ul{
     list-style-type: none;
 }
@@ -267,4 +278,50 @@ h2{
     margin: 10px;
     width: 100%;
 }
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 50px auto;
+}
+.avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+}
+input {
+    display: none;
+    }
+label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all .2s ease-in-out;
+
+}
+.avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    } 
+.avatar-edit {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    }
+    
 </style>

@@ -1,26 +1,17 @@
 <template>
   <div id="app">
-    <div class="row">
-
-    <Introduction/>
-    <Login/>
-    <Footer/>
+      <Dashboard/>
     <router-view/>
-    </div>
   </div>
 </template>
 
 <script>
-import Introduction from '@/components/intro.vue'
-import Login from '@/components/login-form.vue'
-import Footer from '@/components/footer.vue'
+import Dashboard from '@/components/dashboard.vue'
 
 export default {
   name: 'App',
   components: {
-    Introduction,
-    Login,
-    Footer
+  Dashboard
   }
 }
 </script>
@@ -35,10 +26,9 @@ export default {
   color: #2c3e50;
   margin-top: 0;
   background-color:	#f7f7f7;
-  top: 0px;
-  height: 650px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
+  overflow-x: hidden;
 
 }
 </style>

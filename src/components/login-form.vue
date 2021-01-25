@@ -1,14 +1,13 @@
 <template>
     <div class="container mt-0 col-md-6">
-    <div  v-fi="error" class="error">{{error.message}}</div>
     <div class="card col-md-6">
-    <form class="form-group" @submit.prevent="pressed">
-    <input type="email" v-model="email" id="email" class="form-control mt-4 mb-2" placeholder="Email or Phone number"/>
-    <input type="password" v-model="password" id="password" class="form-control mt-2 mb-2" placeholder="password"/>
-    <button class="btn btn-login mb-2" type="submit">Log In</button>
+    <form class="form-group" @submit.prevent="pressed" >
+    <input type="email" v-model= "email" id="email1" class="form-control mt-4 mb-2" placeholder="Email or Phone number"/>
+    <input type="password" v-model= "password" id="password1" class="form-control mt-2 mb-2" placeholder="password"/>
+    <button class="btn btn-login mb-2" type="submit" >Log In</button>
     <p class="text-center"><a href="#">Forgotten password?</a></p>
     <hr>
-    <button class="btn btn  mb-4">Create New Account</button>
+    <button class="btn btn  mb-4" @click="showModal = true">Create New Account</button>
     </form>
     </div>
     <div class="celebrity mt-5">
@@ -19,31 +18,29 @@
     </div>
 
 </template>
-<script>
-import  firebase from "firebase/app";
-import "firebase/auth"
 
+<script>
+/* import logintab from './components/Apptab'; */
+import firebase from 'firebase/app'
+require('firebase/auth')
 export default {
-    methods: {
-        async pressed(){
-            try{
-                const user = firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-                this.$router.replace({path:"/account"})
-            }catch(err){
-                alert(err)
-                console.log(err)
-            }
-        }
+    
+    data (){
+      return{
+        email:'',
+        password:''
+      }
     },
-    data(){
-        return{
-            email: "",
-            password: '',
-            error: ''
-        }
+    methods:{
+      pressed(){
+        firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(()=>{
+          this.$router.replace({path:"/account"})
+        })
+      }
     }
-}
+  }
 </script>
+
 <style scoped>
 .container{
     position: relative;
@@ -85,6 +82,35 @@ input{
     top: 100px;
     left: 40px;
 
+}
+
+.button{
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    /* background-color: red; */
+    opacity: ;
+    transition: 0.4s ease-out;
+} 
+.signup{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    width: 50vw;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 </style>
