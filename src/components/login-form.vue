@@ -7,11 +7,11 @@
     <button class="btn btn-login mb-2" type="submit" >Log In</button>
     <p class="text-center"><a href="#">Forgotten password?</a></p>
     <hr>
-    <button class="btn btn  mb-4" @click="showModal = true">Create New Account</button>
+    <button class="btn btn  mb-4" @click="showModal = true"><router-link to="signup">Create New Account</router-link></button>
     </form>
     </div>
     <div class="celebrity mt-5">
-    <p><strong><router-link to="signup">Create a Page</router-link></strong> for a celebrity, band or business.</p>
+    <p><strong>Create a Page</strong> for a celebrity, band or business.</p>
 
     </div>
     
