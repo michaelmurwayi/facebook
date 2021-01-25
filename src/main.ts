@@ -4,12 +4,14 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import { auth } from './firebase'
+import Vuetify from 'vuetify'
 
-Vue.config.productionTip = false
+Vue.use(Vuetify);
 
 auth.onAuthStateChanged(()=>{
 
     new Vue({
+      vuetify: new Vuetify(),
       router,
       store,
       render: h => h(App)
