@@ -17,33 +17,16 @@
         <img  class="img-fluid rounded-circle ml-5 mt-2" src="../assets/groups.png" style="width:40px; height:40px; border-radius:15px 15px;">
         <i class="fas fa-align-justify ml-5 mt-2 fa-lg"></i>
     </div>
-
-    <div class="col-md-4 ml-5">
-
-    <ul class="navbar-nav d-flex flex-row ml-5">
-      <!-- Icons -->
-
-      <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" href="#">
-            <i class="fas fa-bell fa-lg"></i>  
-        </a>
-      </li>
-
-      <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" href="#">
-          <i class="fas fa-shopping-cart fa-lg"></i>
-        </a>
-      </li>
-      <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" href="#">
-          <i class="fab fa-user fa-lg"></i>
-        </a>
-      </li>
-      <!-- Icon dropdown -->
-    </ul>
-    </div>
-  </div>
+ 
+          <div class="dropdown-list">
+        <div class="dropdown-list__item"><a  @click.prevent="logOut">logOut</a></div>
+      
+      </div>
+       
+         </div>
 </nav>
+
+  </div>
     <div class="container-fluid col-md-12 " style="background-color:;">
         <div class="profile col-md-11 ml-5 " style="background-color:grey; height:400px; position:relative; top:0; border-radius: 10px 10px">
             <div class="cover-page">
@@ -111,8 +94,7 @@
                     </div>
                     <div class=" mt-3">
                         <form class="form-group" >
-                        <input type="email" id="email1" class="form-control mt-4 mb-2" placeholder="Email or Phone number"/>
-                        <button class="btn btn-login mb-2" type="submit" >Log In</button>
+                        <v-text-field placeholder="what's on your mind" ></v-text-field>
                         </form>
                     </div>
                 </div>
@@ -200,7 +182,7 @@ li:hover{
 }
 </style>
 <script>
-import {firebase} from '../firebase'
+import firebase from 'firebase/app'
 require('firebase/auth')
 
     export default {
@@ -225,6 +207,13 @@ require('firebase/auth')
 
             
             },
+            logOut() {
+            firebase.auth().signOut().then(() => {
+                firebase.auth().onAuthStateChanged(() => {
+                this.$router.push('/')
+                })
+            })
+            }
         //     savePost: function (e) {
         //             e.preventDefault()
         //             var message = this.text

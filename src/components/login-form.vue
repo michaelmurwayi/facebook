@@ -7,7 +7,7 @@
     <button class="btn btn-login mb-2" type="submit" >Log In</button>
     <p class="text-center"><a href="#">Forgotten password?</a></p>
     <hr>
-    <button class="btn btn  mb-4" @click="showModal = true"><router-link to="/signup">Create New Account</router-link></button>
+    <button class="btn btn  mb-4" @click="showModal = true"><router-link to="/signup" class="text-white">Create New Account</router-link></button>
     </form>
     </div>
     <div class="celebrity mt-5">

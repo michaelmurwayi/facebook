@@ -5,68 +5,41 @@
     <!-- Left elements -->
     <div class="d-flex">
       <!-- Brand -->
-      <h3>facebook</h3>
+      <h2 style="font-weight:1200;">facebook</h2>
       <!-- Search form -->
-
-    <!-- Center elements -->
-    <ul class="navbar-nav flex-row d-none d-md-flex">
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-users fa-lg"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">2</span>
-        </a>
-      </li>
-      
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-home fa-lg"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">1</span>
-        </a>
-      </li>
-
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-shopping-bag fa-lg"></i></span>
-        </a>
-      </li>
-
-    </ul>
-    <!-- Center elements -->
-      <form class="input-group w-auto my-auto d-none d-sm-flex">
-        <input
-          autocomplete="off"
-          type="search"
-          class="form-control rounded"
-          placeholder="Search"
-          style="min-width: 125px;"
-        />
-        <span class="input-group-text border-0 d-none d-lg-flex"
-          ><i class="fas fa-search"></i
-        ></span>
-      </form>
     </div>
     <!-- Left elements -->
 
     <!-- Right elements -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item mr-2">
-          <router-link to="home">home</router-link>
-        </li>
-        <li class="nav-item mr-2">
-          <router-link to="profile">Profile</router-link>
-        </li>
-        <li class="nav-item mr-2">
-          <router-link to="account">Account</router-link>
-        </li>
-      </ul>
+     <form class="form-group col-md-6 row padding"  @submit.prevent="pressed">
+       <input type="email" v-model= "email" id="email1" class="form-control mt-2 mb-2 mr-3 col-md-3 " style="font-size: 10px; border-radius:0px 0px;" placeholder="Email or Phone number"/>
+      <input type="password" v-model= "password" id="password1" class="form-control mt-2 mr-3 mb-2 col-md-3" style="font-size: 10px; border-radius:0px 0px;" placeholder="password"/>
+      <button class="btn btn-primary btn-sm col-md-2" >Login</button>
+     </form>
     <!-- Right elements -->
   </div>
 </nav>
 <!-- Navbar -->
 </template>
 <script>
+import firebase from 'firebase/app'
+require('firebase/auth')
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data (){
+      return{
+        email:'',
+        password:''
+      }
+    },
+  methods:{
+      pressed(){
+        firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(()=>{
+          this.$router.replace({path:"/dashboard"})
+        })
+      }
+    }
 }
 </script>
 <style scoped>
