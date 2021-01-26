@@ -202,7 +202,7 @@ li:hover{
 <script>
 import {firebase} from '../firebase'
 require('firebase/auth')
-const db = firebase.firestore()
+
     export default {
         name:'Michael',
         data(){
