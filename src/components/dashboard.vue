@@ -91,7 +91,7 @@
 
                     <img class="rounded-circle" src="../assets/logo.jpeg" style="height:40px;">
                     </div>
-                    <div class=" col-md-6 mt-3 blue">
+                    <div class=" col-md-6 mt-3">
                         <v-col
                         cols="6"
                         sm="6"
@@ -102,7 +102,7 @@
                         ></v-text-field>
                         </v-col>
                     </div>
-                    <div class="col-md-2 red mt-3">
+                    <div class="col-md-2 mt-3">
 
                     <button class="mt-3" @click="postMessage">Post</button>
                     </div>
@@ -283,7 +283,7 @@ require('firebase/auth')
                 }, () => {
                     // Upload completed successfully, now we can get the download URL
                     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                    console.log("we are here")
+                        console.log("we are here")
                     console.log('File available at', downloadURL);
                     });
                 }
