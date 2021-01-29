@@ -95,16 +95,16 @@
                         <v-col
                         cols="6"
                         sm="6"
-                        v-model= "message"
                         >
-                        <v-text-field class="mt-3"
-                            
+                        <v-text-field class="mt-3" v-model= "newMessage" 
+                        @change= "postMessage"
                         ></v-text-field>
+                        <v-input ></v-input>
                         </v-col>
                     </div>
                     <div class="col-md-2 mt-3">
 
-                    <button class="mt-3" @click="postMessage">Post</button>
+                    <button class="mt-3" @click= "postMessage" >Post</button>
                     </div>
                 </div>
                 <hr>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mt-5" id="postsList" on>
 
             </div>
         </div>
@@ -229,16 +229,21 @@ li:hover{
 <script>
 import Firebase  from 'firebase/app'
 import 'firebase/storage'
+import { db } from '../firebase'
 require('firebase/auth')
-
+require('firebase/database')
     export default {
         name:'Michael',
         data(){
             return{
                previewImage:null,
                text:null,
-               message:null,
+               newMessage:null,
+               post: null,
             }
+        },
+        mounted:function(){
+            this.getPost()
         },
         methods:{
             uploadImage(event){
@@ -255,59 +260,64 @@ require('firebase/auth')
                 // Get a reference to the storage service, which is used to create references in your storage bucket
                 var storage = Firebase.storage();
 
-                // Create a storage reference from our storage service
-                var storageRef = storage.ref();
-                // Create the file metadata
-                var metadata = {
-                contentType: 'image/jpeg'
-                };
+                },
 
-                // Upload file and metadata to the object 'images/mountains.jpg'
-                var uploadTask = storageRef.child(image.name).put(image, metadata);
-
-                // Listen for state changes, errors, and completion of the upload.
-                console.log(Firebase.storage.TaskEvent.STATE_CHANGED)
-                uploadTask.on(Firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                (snapshot) => {
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                    case Firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case Firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                    }
-                }, () => {
-                    // Upload completed successfully, now we can get the download URL
-                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                        console.log("we are here")
-                    console.log('File available at', downloadURL);
-                    });
-                }
-                );    
-            },
-            
             logOut() {
-            firebase.auth().signOut().then(() => {
-                firebase.auth().onAuthStateChanged(() => {
-                this.$router.push('/')
+                Firebase.auth().signOut().then(() => {
+                    Firebase.auth().onAuthStateChanged(() => {
+                        this.$router.push('/')
                 })
             })
-            },
-            postMessage: function (e) {
-                    e.preventDefault()
-                    var message = this.text
-                    // firebase.usersCollection.add({
-                    //     message,
-                    //     createdOn: firebase.firestore.Timestamp.now(),
-                    //     updatedOn: firebase.firestore.Timestamp.now()
-                    // })
+        },
+            postMessage(){
+                let timestamp = Date.now();
+                let newDate = new Date(timestamp * 1000)
+                let Hours = newDate.getHours()
+                let Minutes = newDate.getMinutes()
+                const HourComplete = Hours + ':' + Minutes
+                let formatedTime = HourComplete
+                console.log(formatedTime)
 
-                    console.log(firebase)
-                },
+                Firebase.database().ref('posts/').set(
+                    {
+                    email: Firebase.auth().currentUser.email,
+                    message: this.newMessage,
+                    timestamp: formatedTime,
+                    userId: Firebase.auth().currentUser.uid
+
+                    // timestamp: firebase.firestore.timestamp 
+                }, (error) => {
+                    if (error) {
+                        // The write failed...
+                        console.log("there is an error")
+                    } else {
+                        console.log("Data saved successfully!")
+                    }
+                
+
+            });
+        },
+        getPost(){
+        const postsRef = Firebase.database().ref('posts/');
+        postsRef.on("value", function(snapshot){
+            console.log(snapshot.node_.children_)
+            var message = snapshot.node_.children_.root_.left.value.value_;
+            var email = snapshot.node_.children_.root_.left.value.value_;
+            var time = snapshot.node_.children_.root_.value.value_;
+            console.log(time)
+            document.getElementById("postsList").innerHTML += `
+            <div class="card mb-3 m-2" id="" style="width: 15rem">
+            <div class="card-body">
+                <p class="card-title">${email}</h3>
+                <p>Posted at: ${time}</p>
+                <h6>Issue ID:</h6>
+                
+            </div>
+            </div>
+        `
+            });
         }
-     }  // missing closure added
+    } 
+    } // missing closure added
+
 </script>

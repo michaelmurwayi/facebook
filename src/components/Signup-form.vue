@@ -106,7 +106,7 @@ export default {
     pressed() {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
+        .createUserWithEmailAndPassword(this.firstname, this.surname, this.email, this.password)
         .then(() => {
           console.log("firebase");
           this.$router.replace({path:"/dashboard"})

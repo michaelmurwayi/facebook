@@ -23,7 +23,8 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 
 //  collection reference 
-const usersCollection = db.collection('firstname')
+const usersCollection = db.collection('users')
+
 
 export{
     db,
