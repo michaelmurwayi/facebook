@@ -24,6 +24,7 @@ const auth = firebase.auth()
 
 //  collection reference 
 const usersCollection = db.collection('users')
+const postsCollection = db.collection('posts')
 
 
 export{

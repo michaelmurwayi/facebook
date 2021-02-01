@@ -92,6 +92,8 @@
 // import "firebase/firestore";
 import "firebase/auth";
 import {firebase} from '@firebase/app'
+import userCollection from '../firebase'
+
 export default {
   data() {
     return {
@@ -106,7 +108,7 @@ export default {
     pressed() {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.firstname, this.surname, this.email, this.password)
+        .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           console.log("firebase");
           this.$router.replace({path:"/dashboard"})
