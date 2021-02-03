@@ -93,6 +93,8 @@
 import "firebase/auth";
 import {firebase} from '@firebase/app'
 import userCollection from '../firebase'
+// import Firebase from '../firebase'
+import { db } from '../firebase'
 
 export default {
   data() {
@@ -101,7 +103,8 @@ export default {
       surname:"",
       email: "",
       password: "",
-      error: ""
+      error: "",
+      // userId: firebase.auth().currentUser.uid
     };
   },
   methods: {
@@ -110,11 +113,19 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          console.log("firebase");
+          console.log()
+          const users = db.collection("users").doc(this.email).set({
+            firstname: this.firstname,
+            surname: this.surname,
+            email: this.email,
+            // userId: firebase.auth().currentUser.uid,
+                    // timestamp: firebase.firestore.timestamp 
+                })
           this.$router.replace({path:"/dashboard"})
         })
         .catch(error => (this.error = error));
     }
+    
   }
 };
 </script>

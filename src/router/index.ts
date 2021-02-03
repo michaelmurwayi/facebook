@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Account from '../views/Account.vue'
 import Signup from '../views/Signup.vue'
 import Dashboard from '../views/dashboard.vue'
+import Admin from '../views/Admin.vue'
 import store from '../store'
 
 
@@ -41,6 +42,14 @@ const routes: Array<RouteConfig> = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
+    meta:{
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin,
     meta:{
       requiresAuth: true
     }
