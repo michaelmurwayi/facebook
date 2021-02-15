@@ -1,19 +1,21 @@
 <template>
-  <div id="app row">
-    <Main/>
+  <div id="app">
+    <SideBar/>
+    <div class="row">
+    <Form/>
     <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-// import SideBar from '@/components/adminSideBar.vue'
-import Main from '@/components/adminMain.vue'
+import SideBar from '@/components/adminSideBar.vue'
+import Form from '@/components/Edit-form.vue'
 
 export default {
-  name: 'App',
   components: {
-  Main,
-  
+    SideBar,
+    Form,
   }
 }
 </script>
@@ -26,11 +28,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-//   margin-top: 0;
+  margin-top: 0;
   background-color:	#f7f7f7;
+  top: 40px;
+  height: 700px;
   font-family: Helvetica, Arial, sans-serif;
-  overflow-x: hidden;
-    
+  font-size: 12px;
 
 }
 </style>

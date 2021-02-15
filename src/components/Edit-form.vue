@@ -1,16 +1,16 @@
 <template>
     <div class="container mt-5 col-md-8">
         <div class="" style="text-align:left">
-            <h2>Create a New Account</h2>
-            <p style="font-size:20px"> Its quick and easy </p>
+            <h2>Edit User Details</h2>
+            
         </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-5">
     <form @submit.prevent= "pressed">
   <!-- 2 column grid layout with text inputs for the first and last names -->
   <div class="row mb-4">
     <div class="col">
       <div class="">
-        <input type="text" id="form6Example1" class="form-control" placeholder="First name" v-model= "firstname"/>
+        <input type="text" id="form6Example1" class="form-control" :placeholder= "firsrname" v-model= "firstname"/>
       </div>
     </div>
     <div class="col">
@@ -31,55 +31,10 @@
   <div class="form-outline mb-4">
     <input type="password" id="form6Example5" class="form-control" placeholder="New Password" v-model= "password"/>
   </div>
-   <div class="modal-gender">
-                 
-                 <label for="">Gender</label>
-                 
-                 <div class="modal-gender-alert">
-                     
-                     <a >&#63;</a>
-                     
-                 </div>
-                  
-              </div>
-              
-              <div class="modal-gender-choice">
-                 
-                 <div class="modal-gender-name">
-                     
-                     <label for="">Female</label>
-                     
-                     <input type="radio">
-                     
-                 </div>
-                 
-                 <div class="modal-gender-name">
-                     
-                     <label for="">Male</label>
-                     
-                     <input type="radio">
-                     
-                 </div>
-                 
-                 <div class="modal-gender-name">
-                     
-                     <label for="">Custom</label>
-                     
-                     <input type="radio">
-                     
-                 </div>
-                  
-              </div>
-               <div class="modal-signup-terms">
-                  
-                  <p> By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy. You may receive SMS notifications from us and can opt out at any time.  
-                    </p>
-                    
-              </div>
               
               <div class="modal-signup-button" id="appp">
                   
-                  <button type="submit" >Sign Up</button>
+                  <button type="submit" >Update</button>
                   
               </div>
                
@@ -97,35 +52,48 @@ import userCollection from '../firebase'
 import { db } from '../firebase'
 
 export default {
-  data() {
-    return {
-      firstname:"",
-      surname:"",
-      email: "",
-      password: "",
-      error: "",
-      // userId: firebase.auth().currentUser.uid
-    };
-  },
+    data: function(){
+        return{
+            posts:[],
+            user: '',
+            firstname:'Mike',
+            surname: '',
+            password: '',
+            previewImage:'',
+            newMessage:'',
+            time: '',
+            email:Firebase.auth().currentUser.email,
+            post: '',
+            userId: Firebase.auth().currentUser.uid
+            }
+            },
+  created(){
+            this.getUsers()
+        },
   methods: {
     pressed() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          console.log(firebase.auth().currentUser.uid)
-          const users = db.collection("users").doc(this.email).set({
+        const users = db.collection("users").doc(this.email).set({
             firstname: this.firstname,
             surname: this.surname,
             email: this.email,  
                 })
-          this.$router.replace({path:"/dashboard"})
-        })
-        .catch(error => (this.error = error));
+        this.$router.replace({path:"/users"})
+        
+    },
+
+    getUsers(){
+       this.users = []
+            db.collection("users").doc("him@gmail.com").get().then(snapshot => {
+                console.log(snapshot.data())
+                this.firstname = snapshot.data().firstname
+                this.surname = snapshot.data().surname
+                this.previewImage = snapshot.data().profilePic
+                
+            })
+
     }
-    
   }
-};
+}
 </script>
 
 <style scoped>

@@ -1,19 +1,21 @@
 <template>
-  <div id="app row">
-    <Main/>
+  <div id="app">
+      <SideBar/>
+      <Main/>
     <router-view/>
   </div>
 </template>
 
 <script>
-// import SideBar from '@/components/adminSideBar.vue'
-import Main from '@/components/adminMain.vue'
+import SideBar from '../components/adminSideBar'
+import Main from '@/components/adminUsers.vue'
 
 export default {
   name: 'App',
   components: {
   Main,
-  
+  SideBar
+
   }
 }
 </script>
@@ -26,11 +28,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-//   margin-top: 0;
+  margin-top: 0;
   background-color:	#f7f7f7;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
   overflow-x: hidden;
-    
 
 }
 </style>

@@ -1,19 +1,17 @@
 <template>
-  <div id="app row">
-    <Main/>
+  <div id="app">
+      <Dashboard/>
     <router-view/>
   </div>
 </template>
 
 <script>
-// import SideBar from '@/components/adminSideBar.vue'
-import Main from '@/components/adminMain.vue'
+import Dashboard from '@/components/dashboard.vue'
 
 export default {
   name: 'App',
   components: {
-  Main,
-  
+  Dashboard
   }
 }
 </script>
@@ -26,11 +24,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-//   margin-top: 0;
+  margin-top: 0;
   background-color:	#f7f7f7;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
   overflow-x: hidden;
-    
 
 }
 </style>

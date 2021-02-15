@@ -30,21 +30,6 @@ export default new Vuex.Store({
             router.push({path:'dashboard'})
         },
 
-        async signup({ dispatch }, form) {
-            // sign user up
-            const { user } = await firebase.auth.createUserWithEmailAndPassword(form.email, form.password)
-          
-            // create user profile object in userCollections
-            // await firebase.usersCollection.doc(user.uid).set({
-            //   firstname: form.firstname,
-            //   surname: form.surname,
-            //   email: form.email,
-            // })
-            console.log("we are here")
-          
-            // fetch user profile and set in state
-            dispatch('fetchUserProfile', user)
-          }
     },
     
 })
